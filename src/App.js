@@ -6,7 +6,7 @@ import H from './components/h_component';
 
 class App extends Component {
     state = {
-        loading: false,
+        text: 'Welcome',
         currColor: 0,
         colors: [
             { hex: '000000' },
@@ -42,12 +42,17 @@ class App extends Component {
         }
     }
 
+    onChangeListener = (e) => {
+        this.setState({ text: e.target.value });
+    }
+
     render() {
         return (
             <div className="App">
                 <div className="App-header">
                     <img src={logo} className="App-logo" alt="logo" />
-                    <H text="Welcome" click={() => this.onClickChangeColor()} color={`#${this.state.colors[this.state.currColor].hex}`} />
+                    <H text={this.state.text} click={() => this.onClickChangeColor()} color={`#${this.state.colors[this.state.currColor].hex}`} />
+                    <input onChange={this.onChangeListener} placeholder="Type something.." />
                 </div>
             </div>
         );
